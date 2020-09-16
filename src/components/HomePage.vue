@@ -1,16 +1,10 @@
 <template>
+<div>
+ <div>
+     <nav-bar></nav-bar>
+ </div>
 <div class="homepage container-fluid">
-    <div class="row">
-        <div class="col-1">
-            <div class="form-group">
-                <select class="form-control" v-model="kms">
-                    <option value="kms">Kms</option>
-                    <option v-for="(option,i) in getManufacturer" :key="i" :value="option.model">{{option.manufacturer}}</option>
-                </select>
-
-            </div>
-        </div>
-    </div>
+    
     <div class="row">
         <div v-for="(car ,i) in cars" :key="i" class="col-md-12 col-sm-6 col-6">
             <div class="row mt-3 mb-3 m-0 list-outer align-items-center ">
@@ -45,17 +39,17 @@
             </div>
         </div>
     </div>
-
+</div>
 </div>
 </template>
 
 <script>
-import CarList from './CarList'
+import NavBar from '../components/NavBar'
 import axios from 'axios'
 export default {
     name: 'Homepage',
     components: {
-        CarList
+        NavBar
     },
     data() {
         return {
@@ -84,13 +78,7 @@ export default {
         },
 
     },
-    computed: {
-        getManufacturer() {
-           const obj = [...new Map(this.cars.map(item => [JSON.stringify(item), item])).values()];
-           return obj
-        }
-
-    },
+    
     mounted() {
         this.getCars();
 
